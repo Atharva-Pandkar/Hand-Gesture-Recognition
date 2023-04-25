@@ -90,8 +90,8 @@ def  display():
 
     model = load_model("C:\\Users\\athar\\Dropbox\\PC\\Downloads\\smnist.h5")
 
-    mphands = mp.solutions.hands
-    hands = mphands.Hands()
+    mp_hands = mp.solutions.hands
+    hands = mp_hands.Hands()
     mp_drawing = mp.solutions.drawing_utils
     cap = cv2.VideoCapture(0)
 
@@ -100,8 +100,8 @@ def  display():
     h, w, c = frame.shape
 
     img_counter = 0
-    analysisframe = ''
-    letterpred = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+    analysis_frame = ''
+    letter_pred = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
                   'V', 'W', 'X', 'Y']
     while True:
         _, frame = cap.read()
@@ -113,20 +113,22 @@ def  display():
             break
         elif k % 256 == 32:
             # SPACE pressed
-            analysisframe = frame
-            showframe = analysisframe
+            analysis_frame = frame
+            showframe = analysis_frame
+
             cv2.imshow("Frame", showframe)
-            framergbanalysis = cv2.cvtColor(analysisframe, cv2.COLOR_BGR2RGB)
-            resultanalysis = hands.process(framergbanalysis)
-            hand_landmarksanalysis = resultanalysis.multi_hand_landmarks
-            if hand_landmarksanalysis:
-                for handLMsanalysis in hand_landmarksanalysis:
+
+            frame_rgb_analysis = cv2.cvtColor(analysis_frame, cv2.COLOR_BGR2RGB)
+            result_analysis = hands.process(frame_rgb_analysis)
+            hand_landmarks_analysis = result_analysis.multi_hand_landmarks
+            if hand_landmarks_analysis:
+                for hand_LMs_analysis in hand_landmarks_analysis:
                     x_max = 0
                     y_max = 0
                     x_min = w
                     y_min = h
-                    for lmanalysis in handLMsanalysis.landmark:
-                        x, y = int(lmanalysis.x * w), int(lmanalysis.y * h)
+                    for lm_analysis in hand_LMs_analysis.landmark:
+                        x, y = int(lm_analysis.x * w), int(lm_analysis.y * h)
                         if x > x_max:
                             x_max = x
                         if x < x_min:
@@ -140,55 +142,57 @@ def  display():
                     x_min -= 20
                     x_max += 20
 
-            analysisframe = cv2.cvtColor(analysisframe, cv2.COLOR_BGR2GRAY)
-            analysisframe = analysisframe[y_min:y_max, x_min:x_max]
-            analysisframe = cv2.resize(analysisframe, (28, 28))
+            analysis_frame = cv2.cvtColor(analysis_frame, cv2.COLOR_BGR2GRAY)
+            analysis_frame = analysis_frame[y_min:y_max, x_min:x_max]
+            analysis_frame = cv2.resize(analysis_frame, (28, 28))
 
-            nlist = []
-            rows, cols = analysisframe.shape
+            n_list = []
+            rows, cols = analysis_frame.shape
             for i in range(rows):
                 for j in range(cols):
-                    k = analysisframe[i, j]
-                    nlist.append(k)
+                    k = analysis_frame[i, j]
+                    n_list.append(k)
 
-            datan = pd.DataFrame(nlist).T
+            datan = pd.DataFrame(n_list).T
+
             colname = []
             for val in range(784):
                 colname.append(val)
             datan.columns = colname
 
-            pixeldata = datan.values
-            pixeldata = pixeldata / 255
-            pixeldata = pixeldata.reshape(-1, 28, 28, 1)
-            prediction = model.predict(pixeldata)
-            predarray = np.array(prediction[0])
-            letter_prediction_dict = {letterpred[i]: predarray[i] for i in range(len(letterpred))}
-            predarrayordered = sorted(predarray, reverse=True)
-            high1 = predarrayordered[0]
-            high2 = predarrayordered[1]
-            high3 = predarrayordered[2]
+            pixel_data = datan.values
+            pixel_data = pixel_data / 255
+            pixel_data = pixel_data.reshape(-1, 28, 28, 1)
+            prediction = model.predict(pixel_data)
+            pred_array = np.array(prediction[0])
+            letter_prediction_dict = {letter_pred[i]: pred_array[i] for i in range(len(letter_pred))}
+            pred_array_ordered = sorted(pred_array, reverse=True)
+            high_1 = pred_array_ordered[0]
+            high_2 = pred_array_ordered[1]
+            high_3 = pred_array_ordered[2]
+            
             for key, value in letter_prediction_dict.items():
-                if value == high1:
+                if value == high_1:
                     print("Predicted Character 1: ", key)
                     print('Confidence 1: ', 100 * value)
-                elif value == high2:
+                elif value == high_2:
                     print("Predicted Character 2: ", key)
                     print('Confidence 2: ', 100 * value)
-                elif value == high3:
+                elif value == high_3:
                     print("Predicted Character 3: ", key)
                     print('Confidence 3: ', 100 * value)
             time.sleep(5)
 
-        framergb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        result = hands.process(framergb)
+        frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        result = hands.process(frame_rgb)
         hand_landmarks = result.multi_hand_landmarks
         if hand_landmarks:
-            for handLMs in hand_landmarks:
+            for hand_LMs in hand_landmarks:
                 x_max = 0
                 y_max = 0
                 x_min = w
                 y_min = h
-                for lm in handLMs.landmark:
+                for lm in hand_LMs.landmark:
                     x, y = int(lm.x * w), int(lm.y * h)
                     if x > x_max:
                         x_max = x
