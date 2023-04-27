@@ -1,11 +1,11 @@
 future==0.18.2
-matplotlib==3.5.1
+matplotlib~=3.7.1
 mediapipe==0.8.11
-numpy==1.22.1
+numpy~=1.23.5
 omegaconf==2.1.1
 opencv_python_headless==4.5.5.62
-pandas==1.4.0
-Pillow==9.1.1
+pandas~=2.0.0
+Pillow~=9.4.0
 preprocessing==0.1.13
 protobuf==3.20.2
 seaborn==0.11.2
@@ -15,3 +15,6 @@ torch==1.11.0
 torchmetrics==0.8.0
 torchvision==0.12.0
 tqdm==4.64.1
+keras~=2.12.0
+scikit-learn~=1.2.2
+opencv-python~=4.7.0.72

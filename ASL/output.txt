@@ -1,0 +1,190 @@
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #
+=================================================================
+ conv2d (Conv2D)             (None, 28, 28, 75)        750
+
+ batch_normalization (BatchN  (None, 28, 28, 75)       300
+ ormalization)
+
+ max_pooling2d (MaxPooling2D  (None, 14, 14, 75)       0
+ )
+
+ conv2d_1 (Conv2D)           (None, 14, 14, 50)        33800
+
+ dropout (Dropout)           (None, 14, 14, 50)        0
+
+ batch_normalization_1 (Batc  (None, 14, 14, 50)       200
+ hNormalization)
+
+ max_pooling2d_1 (MaxPooling  (None, 7, 7, 50)         0
+ 2D)
+
+ conv2d_2 (Conv2D)           (None, 7, 7, 25)          11275
+
+ batch_normalization_2 (Batc  (None, 7, 7, 25)         100
+ hNormalization)
+
+ max_pooling2d_2 (MaxPooling  (None, 4, 4, 25)         0
+ 2D)
+
+ flatten (Flatten)           (None, 400)               0
+
+ dense (Dense)               (None, 512)               205312
+
+ dropout_1 (Dropout)         (None, 512)               0
+
+ dense_1 (Dense)             (None, 24)                12312
+
+=================================================================
+Total params: 264,049
+Trainable params: 263,749
+Non-trainable params: 300
+_________________________________________________________________
+Epoch 1/20
+215/215 [==============================] - 58s 264ms/step - loss: 1.0378 - accuracy: 0.6724 - val_loss: 3.4574 - val_accuracy: 0.1235 - lr: 0.0010
+Epoch 2/20
+215/215 [==============================] - 49s 228ms/step - loss: 0.2070 - accuracy: 0.9313 - val_loss: 0.9397 - val_accuracy: 0.7006 - lr: 0.0010
+Epoch 3/20
+215/215 [==============================] - 47s 217ms/step - loss: 0.1005 - accuracy: 0.9686 - val_loss: 0.5269 - val_accuracy: 0.8111 - lr: 0.0010
+Epoch 4/20
+215/215 [==============================] - 47s 217ms/step - loss: 0.0632 - accuracy: 0.9784 - val_loss: 0.0392 - val_accuracy: 0.9921 - lr: 0.0010
+Epoch 5/20
+215/215 [==============================] - 47s 219ms/step - loss: 0.0483 - accuracy: 0.9847 - val_loss: 0.5144 - val_accuracy: 0.8370 - lr: 0.0010
+Epoch 6/20
+215/215 [==============================] - ETA: 0s - loss: 0.0358 - accuracy: 0.9887
+Epoch 6: ReduceLROnPlateau reducing learning rate to 0.0005000000237487257.
+215/215 [==============================] - 50s 231ms/step - loss: 0.0358 - accuracy: 0.9887 - val_loss: 0.0389 - val_accuracy: 0.9890 - lr: 0.0010
+Epoch 7/20
+215/215 [==============================] - 49s 227ms/step - loss: 0.0189 - accuracy: 0.9943 - val_loss: 0.0033 - val_accuracy: 0.9999 - lr: 5.0000e-04
+Epoch 8/20
+215/215 [==============================] - 47s 220ms/step - loss: 0.0146 - accuracy: 0.9957 - val_loss: 0.0098 - val_accuracy: 0.9971 - lr: 5.0000e-04
+Epoch 9/20
+215/215 [==============================] - ETA: 0s - loss: 0.0139 - accuracy: 0.9959
+Epoch 9: ReduceLROnPlateau reducing learning rate to 0.0002500000118743628.
+215/215 [==============================] - 47s 216ms/step - loss: 0.0139 - accuracy: 0.9959 - val_loss: 0.0240 - val_accuracy: 0.9912 - lr: 5.0000e-04
+Epoch 10/20
+215/215 [==============================] - 48s 223ms/step - loss: 0.0097 - accuracy: 0.9975 - val_loss: 0.0014 - val_accuracy: 1.0000 - lr: 2.5000e-04
+Epoch 11/20
+215/215 [==============================] - 46s 212ms/step - loss: 0.0087 - accuracy: 0.9976 - val_loss: 0.0069 - val_accuracy: 0.9989 - lr: 2.5000e-04
+Epoch 12/20
+215/215 [==============================] - ETA: 0s - loss: 0.0079 - accuracy: 0.9978
+Epoch 12: ReduceLROnPlateau reducing learning rate to 0.0001250000059371814.
+215/215 [==============================] - 46s 212ms/step - loss: 0.0079 - accuracy: 0.9978 - val_loss: 0.0030 - val_accuracy: 0.9996 - lr: 2.5000e-04
+Epoch 13/20
+215/215 [==============================] - 48s 222ms/step - loss: 0.0070 - accuracy: 0.9980 - val_loss: 0.0016 - val_accuracy: 1.0000 - lr: 1.2500e-04
+Epoch 14/20
+215/215 [==============================] - ETA: 0s - loss: 0.0064 - accuracy: 0.9982
+Epoch 14: ReduceLROnPlateau reducing learning rate to 6.25000029685907e-05.
+215/215 [==============================] - 46s 215ms/step - loss: 0.0064 - accuracy: 0.9982 - val_loss: 9.1025e-04 - val_accuracy: 1.0000 - lr: 1.2500e-04
+Epoch 15/20
+215/215 [==============================] - 45s 210ms/step - loss: 0.0052 - accuracy: 0.9989 - val_loss: 0.0011 - val_accuracy: 1.0000 - lr: 6.2500e-05
+Epoch 16/20
+215/215 [==============================] - ETA: 0s - loss: 0.0049 - accuracy: 0.9991
+Epoch 16: ReduceLROnPlateau reducing learning rate to 3.125000148429535e-05.
+215/215 [==============================] - 45s 209ms/step - loss: 0.0049 - accuracy: 0.9991 - val_loss: 6.9044e-04 - val_accuracy: 1.0000 - lr: 6.2500e-05
+Epoch 17/20
+215/215 [==============================] - 46s 213ms/step - loss: 0.0047 - accuracy: 0.9991 - val_loss: 7.1791e-04 - val_accuracy: 1.0000 - lr: 3.1250e-05
+Epoch 18/20
+215/215 [==============================] - ETA: 0s - loss: 0.0051 - accuracy: 0.9989
+Epoch 18: ReduceLROnPlateau reducing learning rate to 1.5625000742147677e-05.
+215/215 [==============================] - 46s 213ms/step - loss: 0.0051 - accuracy: 0.9989 - val_loss: 8.8745e-04 - val_accuracy: 1.0000 - lr: 3.1250e-05
+Epoch 19/20
+215/215 [==============================] - 47s 216ms/step - loss: 0.0049 - accuracy: 0.9985 - val_loss: 7.4149e-04 - val_accuracy: 1.0000 - lr: 1.5625e-05
+Epoch 20/20
+215/215 [==============================] - ETA: 0s - loss: 0.0053 - accuracy: 0.9985
+Epoch 20: ReduceLROnPlateau reducing learning rate to 1e-05.
+215/215 [==============================] - 45s 211ms/step - loss: 0.0053 - accuracy: 0.9985 - val_loss: 5.3224e-04 - val_accuracy: 1.0000 - lr: 1.5625e-05
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+1/1 [==============================] - 1s 808ms/step
+Predicted Character 3:  C
+Confidence 3:  0.0006948238024051534
+Predicted Character 1:  F
+Confidence 1:  99.98476505279541
+Predicted Character 2:  Y
+Confidence 2:  0.014288090460468084
+1/1 [==============================] - 0s 30ms/step
+Predicted Character 2:  E
+Confidence 2:  14.081518352031708
+Predicted Character 1:  F
+Confidence 1:  84.13950204849243
+Predicted Character 3:  I
+Confidence 3:  1.3067535124719143
+1/1 [==============================] - 0s 21ms/step
+Predicted Character 1:  F
+Confidence 1:  99.93896484375
+Predicted Character 2:  I
+Confidence 2:  0.05047161830589175
+Predicted Character 3:  P
+Confidence 3:  0.008114711818052456
+1/1 [==============================] - 0s 21ms/step
+Predicted Character 1:  A
+Confidence 1:  96.99937701225281
+Predicted Character 2:  F
+Confidence 2:  1.203844416886568
+Predicted Character 3:  Y
+Confidence 3:  0.9435449726879597
+1/1 [==============================] - 0s 19ms/step
+Predicted Character 1:  H
+Confidence 1:  60.44929623603821
+Predicted Character 3:  P
+Confidence 3:  9.733396768569946
+Predicted Character 2:  X
+Confidence 2:  28.770920634269714
+1/1 [==============================] - 0s 18ms/step
+Predicted Character 1:  F
+Confidence 1:  99.97096657752991
+Predicted Character 2:  P
+Confidence 2:  0.017285297508351505
+Predicted Character 3:  Q
+Confidence 3:  0.010456782183609903
+1/1 [==============================] - 0s 22ms/step
+Predicted Character 2:  E
+Confidence 2:  0.3495798213407397
+Predicted Character 1:  F
+Confidence 1:  99.28309917449951
+Predicted Character 3:  Y
+Confidence 3:  0.153539446182549
+1/1 [==============================] - 0s 18ms/step
+Predicted Character 1:  F
+Confidence 1:  98.83117079734802
+Predicted Character 2:  I
+Confidence 2:  0.49614738672971725
+Predicted Character 3:  N
+Confidence 3:  0.3315762849524617
+1/1 [==============================] - 0s 18ms/step
+Predicted Character 1:  F
+Confidence 1:  63.43810558319092
+Predicted Character 3:  L
+Confidence 3:  2.7735697105526924
+Predicted Character 2:  Y
+Confidence 2:  32.224658131599426
+1/1 [==============================] - 0s 17ms/step
+Predicted Character 2:  F
+Confidence 2:  0.4826722666621208
+Predicted Character 1:  P
+Confidence 1:  99.48549270629883
+Predicted Character 3:  Y
+Confidence 3:  0.023426640836987644
+1/1 [==============================] - 0s 28ms/step
+Predicted Character 1:  A
+Confidence 1:  85.98157167434692
+Predicted Character 3:  P
+Confidence 3:  1.7366981133818626
+Predicted Character 2:  S
+Confidence 2:  11.712538450956345
+1/1 [==============================] - 0s 16ms/step
+Predicted Character 2:  R
+Confidence 2:  20.829999446868896
+Predicted Character 1:  U
+Confidence 1:  41.25392138957977
+Predicted Character 3:  W
+Confidence 3:  15.651527047157288
+1/1 [==============================] - 0s 18ms/step
+Predicted Character 2:  F
+Confidence 2:  0.07951025036163628
+Predicted Character 3:  I
+Confidence 3:  0.05469646421261132
+Predicted Character 1:  P
+Confidence 1:  99.85377788543701
+Escape hit, closing...

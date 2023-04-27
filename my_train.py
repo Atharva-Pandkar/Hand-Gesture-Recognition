@@ -1,11 +1,15 @@
 import argparse
+import logging
 import random
 from typing import Optional, Tuple
 
 import numpy as np
 import torch
 from omegaconf import omegaconf, DictConfig
-from torchvision.models import ResNet
+
+from Hagrid.dataset import GestureDataset
+from Hagrid.preprocess import get_transform
+from models import ResNet
 
 
 def parse_arguments(params: Optional[Tuple] = None) -> argparse.Namespace:
@@ -39,12 +43,8 @@ def _initialize_model(conf: DictConfig):
 args = parse_arguments()
 path_to_config = args.path_to_config
 if args.command == 'train':
-    print("Inside Run_train function")
     conf = omegaconf.OmegaConf.load(path_to_config)
-    print("Going to initialize model")
     model = _initialize_model(conf)
-    print("Model Initialised")
-    print("Going inside the Gesture Dataset")
     train_dataset = GestureDataset(is_train=True, conf=conf, transform=get_transform())
 
     test_dataset = GestureDataset(is_train=False, conf=conf, transform=get_transform())

@@ -1,12 +1,3 @@
-import matplotlib.pyplot as plt
-import seaborn as sns
-from keras.models import Sequential
-from keras.layers import Dense, Conv2D , MaxPool2D , Flatten , Dropout , BatchNormalization
-from keras.preprocessing.image import ImageDataGenerator
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report,confusion_matrix
-import pandas as pd
-
 def train_model():
     from keras.models import Sequential
     from keras.layers import Dense, Conv2D, MaxPool2D, Flatten, Dropout, BatchNormalization
@@ -14,8 +5,8 @@ def train_model():
     from keras.callbacks import ReduceLROnPlateau
     import pandas as pd
 
-    train_df = pd.read_csv("sign_mnist_train.csv")
-    test_df = pd.read_csv("sign_mnist_test.csv")
+    train_df = pd.read_csv("C:\\Users\\athar\\PycharmProjects\\Final_Project\\ASL\\sign_mnist_train.csv")
+    test_df = pd.read_csv("C:\\Users\\athar\\PycharmProjects\\Final_Project\\ASL\\sign_mnist_test.csv")
 
     y_train = train_df['label']
     y_test = test_df['label']
@@ -80,7 +71,6 @@ def train_model():
 def  display():
     import os
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-    import tensorflow as tf
     import cv2
     import mediapipe as mp
     from keras.models import load_model
@@ -88,7 +78,7 @@ def  display():
     import time
     import pandas as pd
 
-    model = load_model("C:\\Users\\athar\\Dropbox\\PC\\Downloads\\smnist.h5")
+    model = load_model("C:\\Users\\athar\\PycharmProjects\\Final_Project\\smnist.h5")
 
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands()

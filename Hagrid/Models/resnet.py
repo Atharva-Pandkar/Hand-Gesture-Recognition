@@ -42,14 +42,7 @@ class ResNet(nn.Module):
 
         if restype == "ResNet18":
             torchvision_model = models.resnet18(pretrained=pretrained)
-        elif restype == "ResNet50":
-            torchvision_model = models.resnet50(pretrained=pretrained)
-        elif restype == "ResNet152":
-            torchvision_model = models.resnet152(pretrained=pretrained)
-        elif restype == "ResNext50":
-            torchvision_model = models.resnext50_32x4d(pretrained=pretrained)
-        elif restype == "ResNext101":
-            torchvision_model = models.resnext101_32x8d(pretrained=pretrained)
+
 
         if freezed:
             for param in torchvision_model.parameters():
