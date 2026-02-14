@@ -31,7 +31,7 @@ def _initialize_model(conf: DictConfig):
     torch.manual_seed(random_seed)
     np.random.seed(random_seed)
     random.seed(random_seed)
-    print(conf.dataset.targets,conf.model.name,conf.device)
+    logging.info("Targets: %s, Model: %s, Device: %s", conf.dataset.targets, conf.model.name, conf.device)
     num_classes = len(conf.dataset.targets)
     conf.num_classes = {"gesture": num_classes, "leading_hand": 2}
 

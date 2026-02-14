@@ -19,7 +19,7 @@ logging.basicConfig(format="[LINE:%(lineno)d] %(levelname)-8s [%(asctime)s]  %(m
 
 def _initialize_model(conf: DictConfig):
     set_random_state(conf.random_state)
-    print(conf.dataset.targets,conf.model.name,conf.device)
+    logging.info("Targets: %s, Model: %s, Device: %s", conf.dataset.targets, conf.model.name, conf.device)
     num_classes = len(conf.dataset.targets)
     conf.num_classes = {"gesture": num_classes, "leading_hand": 2}
 
@@ -46,8 +46,8 @@ def _run_test(path_to_config: str):
     conf = omegaconf.OmegaConf.load(path_to_config)
     model = _initialize_model(conf)
 
-    experimnt_pth = f"experiments/{conf.experiment_name}"
-    writer = SummaryWriter(log_dir=f"{experimnt_pth}/logs")
+    experiment_pth = f"experiments/{conf.experiment_name}"
+    writer = SummaryWriter(log_dir=f"{experiment_pth}/logs")
     writer.add_text("model/name", conf.model.name)
 
     test_dataset = GestureDataset(is_train=False, conf=conf, transform=get_transform(), is_test=True)
@@ -75,12 +75,12 @@ def _run_train(path_to_config: str) -> None:
     path_to_config : str
         Path to config
     """
-    print("Inside Run_train function")
+    logging.info("Inside _run_train function")
     conf = omegaconf.OmegaConf.load(path_to_config)
-    print("Going to initialize model")
+    logging.info("Going to initialize model")
     model = _initialize_model(conf)
-    print("Model Initialised")
-    print("Going inside the Gesture Dataset")
+    logging.info("Model initialized")
+    logging.info("Going inside the Gesture Dataset")
     train_dataset = GestureDataset(is_train=True, conf=conf, transform=get_transform())
 
     test_dataset = GestureDataset(is_train=False, conf=conf, transform=get_transform())
@@ -106,7 +106,7 @@ def parse_arguments(params: Optional[Tuple] = None) -> argparse.Namespace:
 if __name__ == "__main__":
     args = parse_arguments()
     if args.command == "train":
-        print("Performing Train operations")
+        logging.info("Performing train operations")
         _run_train(args.path_to_config)
     elif args.command == "test":
         _run_test(args.path_to_config)

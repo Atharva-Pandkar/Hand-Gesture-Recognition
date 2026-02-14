@@ -35,7 +35,7 @@ class GestureDataset(torch.utils.data.Dataset):
         transform : Compose
             Compose of transforms
         """
-        print("Inside the InIt function")
+        logging.info("Initializing GestureDataset")
         self.conf = conf
         self.transform = transform
         self.is_train = is_train
@@ -64,7 +64,7 @@ class GestureDataset(torch.utils.data.Dataset):
                 self.annotations = self.annotations[self.annotations["user_id"].isin(train_users)]
             else:
                 self.annotations = self.annotations[self.annotations["user_id"].isin(val_users)]
-        print("Completed init function")
+        logging.info("Completed GestureDataset initialization")
 
     @staticmethod
     def __get_files_from_dir(pth: str, extns: Tuple, subset: int = None) -> List:
