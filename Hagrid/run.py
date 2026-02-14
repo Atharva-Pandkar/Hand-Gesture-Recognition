@@ -19,7 +19,7 @@ logging.basicConfig(format="[LINE:%(lineno)d] %(levelname)-8s [%(asctime)s]  %(m
 
 def _initialize_model(conf: DictConfig):
     set_random_state(conf.random_state)
-    print(conf.dataset.targets,conf.model.name,conf.device)
+    logging.info(f"{conf.dataset.targets}, {conf.model.name}, {conf.device}")
     num_classes = len(conf.dataset.targets)
     conf.num_classes = {"gesture": num_classes, "leading_hand": 2}
 
