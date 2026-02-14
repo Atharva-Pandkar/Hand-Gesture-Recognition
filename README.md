@@ -60,6 +60,15 @@ pip install -r requirements.txt
 
 ## Usage
 
+### Model entry points
+
+| Entry point | What it runs | Command |
+|-------------|-------------|---------|
+| `main.py` | ASL CNN training + webcam demo | `python main.py` |
+| `Hagrid/run.py` | Hagrid train **or** test (config-driven) | `python -m Hagrid.run -c train -p <config>` |
+| `Hagrid/demo.py` | Hagrid real-time webcam demo | `python -m Hagrid.demo -p <config>` |
+| `my_train.py` | Alternate Hagrid training entry (config-driven, uses `models.py` ResNet) | `python my_train.py -c train -p <config>` |
+
 ### ASL (train + demo)
 
 Train the CNN and run the webcam demo (from repo root):
@@ -68,7 +77,7 @@ Train the CNN and run the webcam demo (from repo root):
 python main.py
 ```
 
-This runs `ASL.t.train_model()` and `ASL.t.display()`. The demo uses the camera, crops the hand via MediaPipe, resizes to 28×28, and shows top-3 letter predictions. Press **Space** to capture a frame for prediction, **Esc** to exit.
+This runs `ASL.t.train_model()` and `ASL.t.display()`. The demo uses the camera, crops the hand via MediaPipe, resizes to 28x28, and shows top-3 letter predictions. Press **Space** to capture a frame for prediction, **Esc** to exit.
 
 ### Hagrid (train / test)
 

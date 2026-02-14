@@ -1,7 +1,11 @@
+import logging
+
 import torchvision
 from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 
 from Hagrid.Models.model import TorchVisionModel
+
+logger = logging.getLogger(__name__)
 
 
 class FasterRCNN_Mobilenet_large(TorchVisionModel):
@@ -24,7 +28,7 @@ class FasterRCNN_Mobilenet_large(TorchVisionModel):
     @staticmethod
     def criterion(model_output, target=None):
         loss_value = sum(loss for loss in model_output.values())
-        print(f"loss_value: {loss_value}")
+        logger.debug("loss_value: %s", loss_value)
         return loss_value
 
     def to(self, device: str):
