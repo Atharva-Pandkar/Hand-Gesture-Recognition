@@ -30,11 +30,10 @@ def add_metrics_to_tensorboard(writer: SummaryWriter, metrics: Dict, epoch: int,
     target : str
         Target name: gesture or leading_hand
     """
-    print("Inside the sdmasidb")
     logging.info(f"{mode}: metrics for {target}")
     logging.info(metrics)
     for key, value in metrics.items():
-        print(f"{key}_{target}/{mode}",value,epoch,"ASDasdasdasdasdasdasdasdasd")
+        logging.debug(f"{key}_{target}/{mode} = {value} (epoch {epoch})")
         writer.add_scalar(f"{key}_{target}/{mode}", value, epoch)
 
 
@@ -56,10 +55,8 @@ def add_params_to_tensorboard(writer: SummaryWriter, params: Dict, epoch: int, o
         Parameters that should not be logged
     """
     for param, value in params.items():
-        #print(f"{obj}/{param}", value, epoch)
         if param not in not_logging:
-            #writer.add_scalar(f"{obj}/{param}", value, epoch)
-            print(value)
+            logging.debug(f"{obj}/{param} = {value} (epoch {epoch})")
 
 
 def set_random_state(random_seed: int) -> None:

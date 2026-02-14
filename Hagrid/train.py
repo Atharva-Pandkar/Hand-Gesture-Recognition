@@ -178,8 +178,8 @@ class TrainClassifier:
             Custom test gesture classification dataset
         """
 
-        experimnt_pth = f"experiments/{conf.experiment_name}"
-        writer = SummaryWriter(log_dir=f"{experimnt_pth}/logs")
+        experiment_pth = f"experiments/{conf.experiment_name}"
+        writer = SummaryWriter(log_dir=f"{experiment_pth}/logs")
         writer.add_text("model/name", conf.model.name)
 
         epochs = conf.train_params.epochs
@@ -224,11 +224,11 @@ class TrainClassifier:
                 model, epoch, conf.device, optimizer, lr_scheduler_warmup, train_dataloader, writer
             )
             current_metric_value = TrainClassifier.eval(model, conf, epoch, test_dataloader, writer)
-            save_checkpoint(experimnt_pth, conf_dictionary, model, optimizer, epoch, f"model_{epoch}.pth")
+            save_checkpoint(experiment_pth, conf_dictionary, model, optimizer, epoch, f"model_{epoch}.pth")
 
             if current_metric_value > best_metric:
                 logging.info(f"Save best model with metric: {current_metric_value}")
-                save_checkpoint(experimnt_pth, conf_dictionary, model, optimizer, epoch, "best_model.pth")
+                save_checkpoint(experiment_pth, conf_dictionary, model, optimizer, epoch, "best_model.pth")
                 best_metric = current_metric_value
 
         writer.flush()

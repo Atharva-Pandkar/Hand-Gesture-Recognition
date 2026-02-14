@@ -1,3 +1,8 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 def train_model():
     from keras.models import Sequential
     from keras.layers import Dense, Conv2D, MaxPool2D, Flatten, Dropout, BatchNormalization
@@ -99,7 +104,7 @@ def  display():
         k = cv2.waitKey(1)
         if k % 256 == 27:
             # ESC pressed
-            print("Escape hit, closing...")
+            logger.info("Escape hit, closing...")
             break
         elif k % 256 == 32:
             # SPACE pressed
@@ -163,14 +168,14 @@ def  display():
             
             for key, value in letter_prediction_dict.items():
                 if value == high_1:
-                    print("Predicted Character 1: ", key)
-                    print('Confidence 1: ', 100 * value)
+                    logger.info("Predicted Character 1: %s", key)
+                    logger.info("Confidence 1: %s", 100 * value)
                 elif value == high_2:
-                    print("Predicted Character 2: ", key)
-                    print('Confidence 2: ', 100 * value)
+                    logger.info("Predicted Character 2: %s", key)
+                    logger.info("Confidence 2: %s", 100 * value)
                 elif value == high_3:
-                    print("Predicted Character 3: ", key)
-                    print('Confidence 3: ', 100 * value)
+                    logger.info("Predicted Character 3: %s", key)
+                    logger.info("Confidence 3: %s", 100 * value)
             time.sleep(5)
 
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
